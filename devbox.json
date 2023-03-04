@@ -1,0 +1,27 @@
+{
+  "packages": [
+    "unzip",
+    "fish",
+    "bat",
+    "git",
+    "neovim",
+    "tmux",
+    "stow",
+    "podman",
+    "podman-compose",
+    "dotnet-sdk"
+  ],
+  "shell": {
+    "init_hook": "",
+    "scripts": { 
+      "init": [
+        "devbox global pull ./devbox.json",
+        "stow --verbose --dir=./dotfiles --target=$HOME --restow home",
+        ". ~/.bash_profile"
+      ]
+    }
+  },
+  "nixpkgs": {
+    "commit": "f80ac848e3d6f0c12c52758c0f25c10c97ca3b62"
+  }
+}

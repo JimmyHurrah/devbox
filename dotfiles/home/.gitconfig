@@ -1,0 +1,28 @@
+[user]
+	name = Jimmy Hurrah
+
+[core]
+	editor = nvim
+	autocrlf=input
+
+[color]
+	ui = true
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[diff]
+	tool = nvim 
+	colorMoved = zebra
+
+[difftool]
+	prompt = false
+
+[fetch]
+	prune = true
+
+[remote]
+	pushDefault = origin
