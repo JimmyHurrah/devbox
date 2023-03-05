@@ -1,5 +1,6 @@
 [user]
 	name = Jimmy Hurrah
+	email = jimmyhurrah@users.noreply.github.com
 
 [core]
 	editor = nvim
