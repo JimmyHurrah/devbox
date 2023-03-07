@@ -134,6 +134,10 @@ vim.o.termguicolors = true
 vim.cmd [[colorscheme kanagawa]]
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+vim.api.nvim_set_hl(0, "signcolumn", { bg = "none" })
+vim.api.nvim_set_hl(0, "NonText", { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
