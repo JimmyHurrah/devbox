@@ -9,8 +9,7 @@
     "ripgrep",
     "tmux",
     "stow",
-    "podman",
-    "podman-compose",
+    "docker",
     "dotnet-sdk"
   ],
   "shell": {

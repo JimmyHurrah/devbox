@@ -3,4 +3,3 @@ if status is-interactive
 end
 
 alias cat="bat -n"
-alias docker="podman"
