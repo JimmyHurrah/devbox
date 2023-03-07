@@ -6,6 +6,7 @@
     "git",
     "tig",
     "neovim",
+    "ripgrep",
     "tmux",
     "stow",
     "podman",
