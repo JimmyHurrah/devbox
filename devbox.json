@@ -11,7 +11,8 @@
     "tmux",
     "stow",
     "docker",
-    "dotnet-sdk"
+    "dotnet-sdk",
+    "powershell"
   ],
   "shell": {
     "init_hook": "",
