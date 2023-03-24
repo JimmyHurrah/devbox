@@ -16,9 +16,12 @@
   ],
   "shell": {
     "init_hook": "",
-    "scripts": { 
+    "scripts": {
       "init": [
         "devbox global pull ./devbox.json",
+        "bash -c 'eval $(devbox global shellenv)'"
+      ],
+      "dotfiles": [
         "stow --verbose --dir=./dotfiles --target=$HOME --restow home",
         ". ~/.bash_profile"
       ]
