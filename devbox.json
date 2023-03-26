@@ -1,6 +1,7 @@
 {
   "packages": [
     "unzip",
+    "gnumake",
     "fish",
     "bat",
     "git",
