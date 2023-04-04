@@ -17,8 +17,6 @@ vim.g.maplocalleader = ' '
 
 require('lazy').setup({
 
-  { 'echasnovski/mini.animate', branch = 'stable' },
-
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = { -- Automatically install LSPs to stdpath for neovim
@@ -31,7 +29,11 @@ require('lazy').setup({
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip'
+    },
   },
 
   { -- Highlight, edit, and navigate code
@@ -43,16 +45,21 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-textobjects',
     }
   },
+
   'earthly/earthly.vim',
-
   'rebelot/kanagawa.nvim', --Theme
-
   'nvim-lualine/lualine.nvim', -- Fancier statusline
   'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    }
+  },
 
   -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
   {
@@ -63,7 +70,9 @@ require('lazy').setup({
     end
   },
 
-  { 'alexghergh/nvim-tmux-navigation', config = function()
+  { 
+    'alexghergh/nvim-tmux-navigation',
+    config = function()
         require'nvim-tmux-navigation'.setup {
             disable_when_zoomed = true, -- defaults to false
             keybindings = {
@@ -75,12 +84,19 @@ require('lazy').setup({
         }
     end
   },
+
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim"
+    }
+  }
 })
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
---
-
+-- 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
@@ -160,8 +176,10 @@ require('indent_blankline').setup {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
+local telescope = require('telescope')
+telescope.setup {
   defaults = {
+    preview = false,
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -175,23 +193,29 @@ require('telescope').setup {
       override_generic_sorter = true, -- override the generic sorter
       override_file_sorter = true, -- override the file sorter
       case_mode = "smart_case", -- or "ignore_case" or "respect_case", The default case_mode is "smart_case"
-    }
-  }
+    },
+    file_browser = {
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      hidden = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
+  },
 }
 
+telescope.load_extension "file_browser"
+
 -- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
+pcall(telescope.load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer]' })
-
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = '[F]ind recently opened files' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]help [H]elp' })
@@ -199,13 +223,7 @@ vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
 vim.keymap.set('n', '<leader>so', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
--- move between panes
--- vim.keymap.set('n', '<C-h>', "<C-w>h")
--- vim.keymap.set('n', '<C-j>', "<C-w>j")
--- vim.keymap.set('n', '<C-k>', "<C-w>k")
--- vim.keymap.set('n', '<C-l>', "<C-w>l")
-
-vim.keymap.set('n', '<C-n>', "<cmd>Lexplore<CR>")
+vim.keymap.set('n', '<C-n>', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -408,12 +426,6 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-
--- netrw
-vim.g.netrw_winsize = 20
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
-vim.g.netrw_keepdir = 0
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
