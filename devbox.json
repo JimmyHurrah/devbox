@@ -1,32 +1,32 @@
 {
   "packages": [
-    "unzip",
-    "gnumake",
-    "fish",
-    "bat",
-    "git",
-    "gh",
-    "tig",
-    "neovim",
-    "gcc",
-    "ripgrep",
-    "yq",
-    "tmux",
-    "stow",
-    "docker",
-    "dotnet-sdk",
-    "powershell"
+    "unzip@latest",
+    "gnumake@latest",
+    "fish@latest",
+    "bat@latest",
+    "git@latest",
+    "gh@latest",
+    "tig@latest",
+    "neovim@latest",
+    "gcc@latest",
+    "ripgrep@latest",
+    "yq@latest",
+    "tmux@latest",
+    "stow@latest",
+    "docker@latest",
+    "dotnet-sdk@latest",
+    "powershell@latest"
   ],
   "shell": {
     "init_hook": "",
     "scripts": {
-      "init": [
-        "devbox global pull ./devbox.json",
-        "bash -c 'eval $(devbox global shellenv)'"
-      ],
       "dotfiles": [
         "stow --verbose --dir=./dotfiles --target=$HOME --restow home",
         ". ~/.bash_profile"
+      ],
+      "init": [
+        "devbox global pull ./devbox.json",
+        "bash -c 'eval $(devbox global shellenv)'"
       ]
     }
   },
