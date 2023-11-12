@@ -14,19 +14,22 @@
     "tmux@latest",
     "stow@latest",
     "docker@latest",
-    "dotnet-sdk@latest",
-    "powershell@latest"
+    "powershell@latest",
+    "zoxide@latest",
+    "dotnet-sdk_8@latest",
+    "nodejs@latest"
   ],
   "shell": {
     "init_hook": "",
     "scripts": {
       "dotfiles": [
         "stow --verbose --dir=./dotfiles --target=$HOME --restow home",
-        ". ~/.bash_profile"
+        "source ~/.bash_profile"
       ],
       "init": [
         "devbox global pull ./devbox.json",
-        "bash -c 'eval $(devbox global shellenv)'"
+        "devbox global shellenv --recompute | source",
+        "devbox run dotfiles"
       ]
     }
   },

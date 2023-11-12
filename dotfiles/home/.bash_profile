@@ -1,3 +1,2 @@
 . ~/.profile
-eval "$(devbox global shellenv)"
-fish
+chsh -s (which fish)
