@@ -1,3 +1,6 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -12,9 +15,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 require('lazy').setup({
 
   { -- LSP Configuration & Plugins
@@ -22,8 +22,7 @@ require('lazy').setup({
     dependencies = { -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'j-hui/fidget.nvim', -- Useful status updates for LSP
-      'folke/neodev.nvim', -- Additional lua configuration, makes nvim stuff amazing
+      'folke/neodev.nvim',
     },
   },
 
@@ -36,41 +35,77 @@ require('lazy').setup({
     },
   },
 
+  -- Useful plugin to show you pending keybinds.
+  { 'folke/which-key.nvim', opts = {} },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    }
+      'kvim-treesitter/nvim-treesitter-textobjects',
+    },
+    build = ':TSUpdate',
   },
 
-  'earthly/earthly.vim',
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {}
+  },
+
+  -- "gc" to comment visual regions/lines
+  { 'numToStr/Comment.nvim', opts = {} },
+
   'rebelot/kanagawa.nvim', --Theme
-  'nvim-lualine/lualine.nvim', -- Fancier statusline
-  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+
+  {
+    -- Set Lualine as statusline
+    'nvim-lualine/lualine.nvim', -- Fancier statusline
+    opts = {
+      options = {
+        icons_enabled = false,
+        theme = 'kanagawa',
+        component_separators = '|',
+        section_separators = '',
+      },
+    },
+  },
+
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'jlcrochet/vim-razor',
+
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
-      'nvim-lua/plenary.nvim'
+      'nvim-lua/plenary.nvim',
+      -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        cond = function()
+          return vim.fn.executable 'make' == 1
+        end
+      },
     }
   },
 
-  -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-    cond = function()
-      return vim.fn.executable 'make' == 1
-    end
-  },
-
-  { 
     'alexghergh/nvim-tmux-navigation',
     config = function()
         require'nvim-tmux-navigation'.setup {
@@ -156,24 +191,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Set lualine as statusline
--- See `:help lualine.txt`
-require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    theme = 'kanagawa',
-    component_separators = '|',
-    section_separators = '',
-  },
-}
-
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
-}
-
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 local telescope = require('telescope')
@@ -229,17 +246,30 @@ vim.keymap.set('n', '<C-n>', ':Telescope file_browser path=%:p:h select_buffer=t
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim', 'c_sharp' },
-
+  ensure_installed = {
+    'lua',
+    'vimdoc',
+    'vim',
+    'c_sharp',
+    'dockerfile',
+    'bash',
+    'fish',
+    'html',
+    'json',
+    'markdown',
+    'sql',
+    'yaml',
+    'bicep'
+  },
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
+      init_selection = '<c-j>',
+      node_incremental = '<c-j>',
+      node_decremental = '<c-k>',
       scope_incremental = '<c-s>',
-      node_decremental = '<c-backspace>',
     },
   },
   textobjects = {
@@ -345,7 +375,11 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  omnisharp = {},
+  dockerls = {},
+  docker_compose_language_service = {},
+  omnisharp = {
+    ['csharp.format.enable'] = false,
+  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -354,9 +388,6 @@ local servers = {
   },
 }
 
--- Setup neovim lua configuration
-require('neodev').setup()
---
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -380,9 +411,6 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
-
--- Turn on lsp status information
-require('fidget').setup()
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
