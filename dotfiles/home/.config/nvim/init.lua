@@ -40,9 +40,6 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'kvim-treesitter/nvim-treesitter-textobjects',
-    },
     build = ':TSUpdate',
   },
 
@@ -126,7 +123,10 @@ require('lazy').setup({
       "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim"
     }
-  }
+  },
+
+  -- clojure dev
+  { "Olical/conjure" }
 })
 
 -- [[ Setting options ]]

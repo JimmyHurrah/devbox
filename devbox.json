@@ -17,7 +17,7 @@
     "powershell@latest",
     "zoxide@latest",
     "dotnet-sdk_8@latest",
-    "nodejs@latest"
+    "nodejs@latest",
   ],
   "shell": {
     "init_hook": "",
