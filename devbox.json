@@ -18,6 +18,8 @@
     "zoxide@latest",
     "dotnet-sdk_8@latest",
     "nodejs@latest",
+    "gleam@latest",
+    "erlang@latest",
   ],
   "shell": {
     "init_hook": "",

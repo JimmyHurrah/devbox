@@ -103,7 +103,41 @@ require("lazy").setup({
 
 	{ "m4xshen/autoclose.nvim", opts = {} },
 
-	{ "github/copilot.vim", opts = {} },
+	{ "github/copilot.vim" },
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		branch = "canary",
+		dependencies = {
+			{ "github/copilot.vim" }, -- or github/copilot.vim
+			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+		},
+		opts = {
+			debug = true, -- Enable debugging
+			window = {
+				layout = "float",
+				relative = "cursor",
+				width = 1,
+				height = 0.4,
+				row = 1,
+			},
+		},
+		config = function(_, opts)
+			require("CopilotChat").setup(opts)
+			local map = function(keys, func)
+				vim.keymap.set("n", keys, func, { noremap = true, silent = true })
+			end
+			map("<leader>cci", ":CopilotChat<CR>")
+			map("<leader>cce", ":CopilotChatExplain<CR>")
+			map("<leader>cct", ":CopilotChatTests<CR>")
+			map("<leader>ccf", ":CopilotChatFix<CR>")
+			map("<leader>cco", ":CopilotChatOptimize<CR>")
+			map("<leader>ccd", ":CopilotChatDocs<CR>")
+			map("<leader>ccc", ":CopilotChatCommit<CR>")
+			map("<leader>ccs", ":CopilotChatCommitStaged<CR>")
+		end,
+	},
+
+	{ "gleam-lang/gleam.vim" },
 
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
@@ -293,6 +327,7 @@ require("lazy").setup({
 				dockerls = {},
 				docker_compose_language_service = {},
 				omnisharp = {},
+				gleam = { cmd = { "gleam", "lsp" } },
 				lua_ls = {
 					-- cmd = {...},
 					-- filetypes { ...},
