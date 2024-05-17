@@ -24,6 +24,7 @@ vim.opt.breakindent = true
 
 -- Save undo history
 vim.opt.undofile = true
+vim.opt.swapfile = false
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
@@ -131,9 +132,19 @@ require("lazy").setup({
 			map("<leader>ccs", ":CopilotChatCommitStaged<CR>")
 		end,
 	},
-
-	{ "gleam-lang/gleam.vim" },
-
+	{
+		"stevearc/oil.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("oil").setup({
+				columns = { "icon" },
+				view_options = {
+					show_hidden = true,
+				},
+			})
+			vim.keymap.set("n", "<C-n>", require("oil").toggle_float)
+		end,
+	},
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
 		opts = {
@@ -211,12 +222,6 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [r]esume" })
 			vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-			vim.keymap.set(
-				"n",
-				"<C-n>",
-				":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-				{ noremap = true }
-			)
 
 			-- Also possible to pass additional configuration options.
 			--  See `:help telescope.builtin.live_grep()` for information about particular keys
