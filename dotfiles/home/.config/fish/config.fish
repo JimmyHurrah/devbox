@@ -3,5 +3,5 @@ if status is-interactive
 end
 
 alias cat="bat -n"
-devbox global shellenv | source
+devbox global shellenv --init-hook | source
 zoxide init --cmd cd fish | source

@@ -98,11 +98,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
-	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = {} },
-
-	{ "m4xshen/autoclose.nvim", opts = {} },
-
 	{ "github/copilot.vim" },
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",

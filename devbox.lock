@@ -61,54 +61,6 @@
         }
       }
     },
-    "erlang@latest": {
-      "last_modified": "2024-03-14T00:49:55Z",
-      "resolved": "github:NixOS/nixpkgs/db001797591bf76f7b8d4c4ed3b49233391e0c97#erlang",
-      "source": "devbox-search",
-      "version": "25.3.2.10",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/50140dpcjxzh1zr1232xszyjxi8hrbpf-erlang-25.3.2.10",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/50140dpcjxzh1zr1232xszyjxi8hrbpf-erlang-25.3.2.10"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/yc01aibk0hhx752y55nrkrawi9gsi9hh-erlang-25.3.2.10",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/yc01aibk0hhx752y55nrkrawi9gsi9hh-erlang-25.3.2.10"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/pdllx77nni8x680qqlx8idzy0win6i34-erlang-25.3.2.10",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/pdllx77nni8x680qqlx8idzy0win6i34-erlang-25.3.2.10"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/4n4hmxq8q2g6v0m3q60ihsrrl051920n-erlang-25.3.2.10",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/4n4hmxq8q2g6v0m3q60ihsrrl051920n-erlang-25.3.2.10"
-        }
-      }
-    },
     "fish@latest": {
       "last_modified": "2024-02-24T23:06:34Z",
       "resolved": "github:NixOS/nixpkgs/9a9dae8f6319600fa9aebde37f340975cab4b8c0#fish",
@@ -186,26 +138,6 @@
         },
         "x86_64-linux": {
           "store_path": "/nix/store/g6343av5x49smrfb16j61cif88xahjvz-git-2.43.1"
-        }
-      }
-    },
-    "gleam@latest": {
-      "last_modified": "2024-03-08T13:51:52Z",
-      "resolved": "github:NixOS/nixpkgs/a343533bccc62400e8a9560423486a3b6c11a23b#gleam",
-      "source": "devbox-search",
-      "version": "1.0.0",
-      "systems": {
-        "aarch64-darwin": {
-          "store_path": "/nix/store/gr0i94cvvbgc7npyyw3xsr9fiwqcg8la-gleam-1.0.0"
-        },
-        "aarch64-linux": {
-          "store_path": "/nix/store/ywa34ywz192s3qgh2h8xm610nc4pmgwy-gleam-1.0.0"
-        },
-        "x86_64-darwin": {
-          "store_path": "/nix/store/05fpsgf9yzg9wj5hz7sf7hxzq73gni95-gleam-1.0.0"
-        },
-        "x86_64-linux": {
-          "store_path": "/nix/store/lmkyqmd32bawdz2yk59g6zn4i18pvr7y-gleam-1.0.0"
         }
       }
     },

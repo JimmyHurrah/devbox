@@ -10,6 +10,7 @@ mkdir ~/devbox && cd $_
 # install packages
 curl https://raw.githubusercontent.com/jimmyhurrah/devbox/main/devbox.json > devbox.json
 devbox run init
+chsh -s $(which fish)
 
 # setup dotfiles
 git init

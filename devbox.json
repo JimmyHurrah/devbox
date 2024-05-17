@@ -18,20 +18,14 @@
     "zoxide@latest",
     "dotnet-sdk_8@latest",
     "nodejs@latest",
-    "gleam@latest",
-    "erlang@latest",
   ],
   "shell": {
     "init_hook": "",
     "scripts": {
-      "dotfiles": [
-        "stow --verbose --dir=./dotfiles --target=$HOME --restow home",
-        "source ~/.bash_profile"
-      ],
       "init": [
         "devbox global pull ./devbox.json",
         "devbox global shellenv --recompute | source",
-        "devbox run dotfiles"
+        "stow --verbose --dir=./dotfiles --target=$HOME --restow home",
       ]
     }
   },
