@@ -98,39 +98,52 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-
-	{ "github/copilot.vim" },
 	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "canary",
-		dependencies = {
-			{ "github/copilot.vim" }, -- or github/copilot.vim
-			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-		},
-		opts = {
-			debug = true, -- Enable debugging
-			window = {
-				layout = "float",
-				relative = "cursor",
-				width = 1,
-				height = 0.4,
-				row = 1,
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+			{
+				"S",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+			{
+				"r",
+				mode = "o",
+				function()
+					require("flash").remote()
+				end,
+				desc = "Remote Flash",
+			},
+			{
+				"R",
+				mode = { "o", "x" },
+				function()
+					require("flash").treesitter_search()
+				end,
+				desc = "Treesitter Search",
+			},
+			{
+				"<c-s>",
+				mode = { "c" },
+				function()
+					require("flash").toggle()
+				end,
+				desc = "Toggle Flash Search",
 			},
 		},
-		config = function(_, opts)
-			require("CopilotChat").setup(opts)
-			local map = function(keys, func)
-				vim.keymap.set("n", keys, func, { noremap = true, silent = true })
-			end
-			map("<leader>cci", ":CopilotChat<CR>")
-			map("<leader>cce", ":CopilotChatExplain<CR>")
-			map("<leader>cct", ":CopilotChatTests<CR>")
-			map("<leader>ccf", ":CopilotChatFix<CR>")
-			map("<leader>cco", ":CopilotChatOptimize<CR>")
-			map("<leader>ccd", ":CopilotChatDocs<CR>")
-			map("<leader>ccc", ":CopilotChatCommit<CR>")
-			map("<leader>ccs", ":CopilotChatCommitStaged<CR>")
-		end,
 	},
 	{
 		"stevearc/oil.nvim",
@@ -327,7 +340,6 @@ require("lazy").setup({
 				dockerls = {},
 				docker_compose_language_service = {},
 				omnisharp = {},
-				gleam = { cmd = { "gleam", "lsp" } },
 				lua_ls = {
 					-- cmd = {...},
 					-- filetypes { ...},
