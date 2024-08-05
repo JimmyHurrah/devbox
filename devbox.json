@@ -14,18 +14,15 @@
     "tmux@latest",
     "stow@latest",
     "docker@latest",
-    "powershell@latest",
     "zoxide@latest",
-    "dotnet-sdk_8@latest",
-    "nodejs@latest",
   ],
   "shell": {
     "init_hook": "",
     "scripts": {
-      "init": [
+      "sync": [
+        "stow --verbose --dir=./dotfiles --target=$HOME --restow home",
         "devbox global pull ./devbox.json",
         "devbox global shellenv --recompute | source",
-        "stow --verbose --dir=./dotfiles --target=$HOME --restow home",
       ]
     }
   },

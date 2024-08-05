@@ -8,13 +8,15 @@ fi
 mkdir ~/devbox && cd $_
 
 # install packages
-curl https://raw.githubusercontent.com/jimmyhurrah/devbox/main/devbox.json > devbox.json
-devbox run init
-chsh -s $(which fish)
+devbox global pull https://raw.githubusercontent.com/jimmyhurrah/devbox/main/devbox.json
+devbox global shellenv --recompute | source
 
 # setup dotfiles
 git init
 git remote add origin https://github.com/jimmyhurrah/devbox.git
 git fetch
 git checkout -t origin/main -f
-devbox run dotfiles
+stow --verbose --dir=./dotfiles --target=$HOME --restow home
+
+# change shell to fish
+chsh -s $(which fish)
