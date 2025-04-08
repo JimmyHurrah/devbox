@@ -5,16 +5,17 @@
     "fish@latest",
     "bat@latest",
     "git@latest",
-    "gh@latest",
-    "tig@latest",
     "neovim@latest",
-    "gcc@latest",
     "ripgrep@latest",
     "yq@latest",
     "tmux@latest",
     "stow@latest",
     "docker@latest",
     "zoxide@latest",
+    "fzf@latest",
+    "lazygit@latest",
+    "nodejs@latest",
+    "go@latest"
   ],
   "shell": {
     "init_hook": "",
@@ -25,8 +26,5 @@
         "devbox global shellenv --recompute | source",
       ]
     }
-  },
-  "nixpkgs": {
-    "commit": "f80ac848e3d6f0c12c52758c0f25c10c97ca3b62"
   }
 }
