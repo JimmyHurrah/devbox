@@ -107,19 +107,25 @@ require("lazy").setup({
 		},
 		{
 			"nvim-treesitter/nvim-treesitter",
+			build = ":TSUpdate",
+			main = "nvim-treesitter.configs",
 			opts = {
+				auto_install = true,
 				ensure_installed = {
-					"lua",
+					"comment",
+					"css",
 					"go",
 					"html",
-					"css",
 					"json",
-					"yaml",
-					"toml",
+					"lua",
 					"markdown",
 					"markdown_inline",
+					"toml",
+					"yaml",
 				},
-				auto_install = true,
+				highlight = {
+					enable = true,
+				},
 			},
 		},
 		{
