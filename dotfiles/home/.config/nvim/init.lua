@@ -8,9 +8,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.expandtab = false
 vim.opt.smartindent = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
@@ -22,8 +23,8 @@ vim.opt.swapfile = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.inccommand = "split"
 vim.opt.wrap = false
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
+vim.opt.cursorline = false
+vim.opt.cursorcolumn = false
 vim.opt.scrolloff = 10
 vim.opt.cmdheight = 1
 vim.opt.ignorecase = true
@@ -44,9 +45,28 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+vim.keymap.set("x", "<leader>p", [[["_dP]], { desc = "Paste over Current Register" })
 
--- Plugin setup
+vim.keymap.set("x", "<leader>ce", ":CodeCompanion /explain<CR>", { noremap = true, silent = true })
+vim.keymap.set("x", "<leader>cf", ":CodeCompanion /fix<CR>", { noremap = true, silent = true })
+vim.keymap.set(
+	"x",
+	"<leader>cr",
+	":CodeCompanion /buffer Please refactor this code to improve readability and maintainability.<CR>",
+	{ noremap = true, silent = true }
+)
+vim.keymap.set(
+	"x",
+	"<leader>co",
+	":CodeCompanion /buffer Please optimize for improved performance.<CR>",
+	{ noremap = true, silent = true }
+)
+
+-- Plugin set
 require("lazy").setup({
+	ui = {
+		border = "rounded",
+	},
 	spec = {
 		{
 			"folke/tokyonight.nvim",
@@ -181,6 +201,7 @@ require("lazy").setup({
 		},
 		{
 			"olimorris/codecompanion.nvim",
+			lazy = false, -- need the commands to be available even before opening chat
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 				"nvim-treesitter/nvim-treesitter",
@@ -196,7 +217,7 @@ require("lazy").setup({
 				},
 			},
 			keys = {
-				{ "<leader>cc", "<cmd>CodeCompanionActions<cr>", desc = "Code Companion Action Palette" },
+				{ "<leader>cc", "<cmd>CodeCompanionChat<cr>", desc = "Code Companion Chat" },
 			},
 		},
 		{
@@ -250,6 +271,9 @@ require("lazy").setup({
 					"gopls",
 					"lua_ls",
 				},
+				ui = {
+					border = "rounded",
+				},
 			},
 		},
 		{
@@ -272,6 +296,30 @@ require("lazy").setup({
 				},
 			},
 		},
+		{
+			"sphamba/smear-cursor.nvim",
+			opts = {},
+		},
+		{
+			"karb94/neoscroll.nvim",
+			opts = {
+				pre_hook = function()
+					require("smear_cursor").enabled = false
+				end,
+				post_hook = function()
+					require("smear_cursor").enabled = true
+				end,
+			},
+		},
+	},
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			text = {
+				spinner = "dots",
+				done = "✔",
+			},
+		},
 	},
 	checker = { enabled = true },
 })
@@ -282,5 +330,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function(args)
 		require("conform").format({ bufnr = args.buf })
 	end,
-})
 })
