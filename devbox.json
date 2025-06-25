@@ -2,7 +2,8 @@
   "packages": [
     "unzip@latest",
     "gnumake@latest",
-    "fish@latest",
+    "zsh@latest",
+    "starship@latest",
     "bat@latest",
     "git@latest",
     "neovim@latest",
