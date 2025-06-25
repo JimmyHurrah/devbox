@@ -5,6 +5,7 @@
 [core]
 	editor = nvim
 	autocrlf=input
+	pager = delta
 
 [color]
 	ui = true
@@ -35,4 +36,45 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !gh auth git-credential
+
+[interactive]
+	diffFilter = delta --color-only --features=interactive
+
+[delta]
+	features = decorations
+	navigate = true
+	light = false
+
+[delta "decorations"]
+	commit-decoration-style = blue ol
+	commit-style = raw
+	file-style = omit
+	hunk-header-decoration-style = blue box
+	hunk-header-file-style = red
+	hunk-header-line-number-style = "#067a00"
+	hunk-header-style = file line-number syntax
+
+[alias]
+	# Common shortcuts
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	ca = commit -a
+	cm = commit -m
+	cam = commit -am
+	
+	# Pretty logs
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lga = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+	
+	# Diff shortcuts
+	d = diff
+	dc = diff --cached
+	ds = diff --stat
+	
+	# Stash shortcuts
+	sl = stash list
+	sa = stash apply
+	ss = stash save
 
