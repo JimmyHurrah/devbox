@@ -17,6 +17,7 @@
     "lazygit@latest",
     "nodejs@latest",
     "go@latest"
+    "delta@latest",
   ],
   "shell": {
     "init_hook": "",
