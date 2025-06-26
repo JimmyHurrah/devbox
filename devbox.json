@@ -6,7 +6,9 @@
     "starship@latest",
     "bat@latest",
     "git@latest",
+    "gh@latest",
     "neovim@latest",
+    "gcc@latest",
     "ripgrep@latest",
     "yq@latest",
     "tmux@latest",
@@ -15,18 +17,23 @@
     "zoxide@latest",
     "fzf@latest",
     "lazygit@latest",
+    "go@latest",
     "nodejs@latest",
-    "go@latest"
+    "eza@latest",
     "delta@latest",
+    "claude-code@latest"
   ],
+  "env": {
+    "DEVBOX_COREPACK_ENABLED": "true",
+  },
   "shell": {
-    "init_hook": "",
+    "init_hook": null,
     "scripts": {
       "sync": [
         "stow --verbose --dir=./dotfiles --target=$HOME --restow home",
         "devbox global pull ./devbox.json",
         "devbox global shellenv --recompute | source",
-      ]
-    }
-  }
+      ],
+    },
+  },
 }
