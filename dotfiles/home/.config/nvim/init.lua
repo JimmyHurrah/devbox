@@ -227,9 +227,9 @@ require("lazy").setup({
 		{
 			"neovim/nvim-lspconfig",
 			config = function()
-				local lspconf = require("lspconfig")
-				local util = require("lspconfig/util")
-				lspconf.gopls.setup({
+				local util = require("lspconfig.util")
+
+				vim.lsp.config("gopls", {
 					cmd = { "gopls" },
 					filetypes = { "go", "gomod", "gowork", "gotmpl" },
 					root_dir = util.root_pattern("go.work, go.mod", ".git"),
@@ -243,7 +243,8 @@ require("lazy").setup({
 						},
 					},
 				})
-				lspconf.lua_ls.setup({
+
+				vim.lsp.config("lua_ls", {
 					settings = {
 						Lua = {
 							telemetry = { enable = false },
@@ -253,6 +254,8 @@ require("lazy").setup({
 						},
 					},
 				})
+				vim.lsp.enable("gopls")
+				vim.lsp.enable("lua_ls")
 			end,
 		},
 		{
