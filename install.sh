@@ -9,7 +9,7 @@ mkdir ~/devbox && cd $_
 
 # install packages
 devbox global pull https://raw.githubusercontent.com/jimmyhurrah/devbox/main/devbox.json
-devbox global shellenv --recompute | source
+source <(devbox global shellenv --recompute)
 
 # setup dotfiles
 git init -b main
