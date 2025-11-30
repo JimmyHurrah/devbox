@@ -48,21 +48,6 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
 vim.keymap.set("x", "<leader>p", [[["_dP]], { desc = "Paste over Current Register" })
 
-vim.keymap.set("x", "<leader>ce", ":CodeCompanion /explain<CR>", { noremap = true, silent = true })
-vim.keymap.set("x", "<leader>cf", ":CodeCompanion /fix<CR>", { noremap = true, silent = true })
-vim.keymap.set(
-	"x",
-	"<leader>cr",
-	":CodeCompanion /buffer Please refactor this code to improve readability and maintainability.<CR>",
-	{ noremap = true, silent = true }
-)
-vim.keymap.set(
-	"x",
-	"<leader>co",
-	":CodeCompanion /buffer Please optimize for improved performance.<CR>",
-	{ noremap = true, silent = true }
-)
-
 -- Plugin set
 require("lazy").setup({
 	ui = {
