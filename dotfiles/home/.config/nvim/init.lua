@@ -241,9 +241,19 @@ require("lazy").setup({
 		{
 			"stevearc/conform.nvim",
 			opts = {
+				async = true,
 				formatters_by_ft = {
 					lua = { "stylua" },
 					go = { "gofmt" },
+					cs = { "csharpier" },
+					csproj = { "csharpier" },
+				},
+				formatters = {
+					csharpier = {
+						command = "csharpier",
+						args = { "format", "--write-stdout" },
+					},
+					to_stdin = true,
 				},
 			},
 		},
@@ -253,6 +263,7 @@ require("lazy").setup({
 				ensure_installed = {
 					"gopls",
 					"lua_ls",
+					"csharpier",
 				},
 				ui = {
 					border = "rounded",
