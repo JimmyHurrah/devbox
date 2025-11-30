@@ -33,6 +33,7 @@ vim.opt.list = true
 vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣" }
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.hlsearch = true
+vim.opt.winborder = "single"
 
 -- Key mappings
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
