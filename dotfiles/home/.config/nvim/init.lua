@@ -245,10 +245,15 @@ require("lazy").setup({
 		{
 			"williamboman/mason.nvim",
 			opts = {
+				registries = {
+					"github:mason-org/mason-registry",
+					"github:CrashDummyy/mason-registry",
+				},
 				ensure_installed = {
 					"gopls",
 					"lua_ls",
 					"csharpier",
+					"roslyn",
 				},
 				ui = {
 					border = "rounded",
@@ -298,6 +303,12 @@ require("lazy").setup({
 				spinner = "dots",
 				done = "✔",
 			},
+		},
+		-- Dotnet
+		{
+			"seblyng/roslyn.nvim",
+			ft = { "cs", "razor" },
+			opts = {},
 		},
 	},
 	checker = { enabled = true },
