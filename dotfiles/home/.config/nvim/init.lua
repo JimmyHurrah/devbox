@@ -201,27 +201,6 @@ require("lazy").setup({
 			end,
 		},
 		{
-			"olimorris/codecompanion.nvim",
-			lazy = false, -- need the commands to be available even before opening chat
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-				"nvim-treesitter/nvim-treesitter",
-			},
-			opts = {
-				strategies = {
-					chat = {
-						adapter = "copilot",
-					},
-					inline = {
-						adapter = "copilot",
-					},
-				},
-			},
-			keys = {
-				{ "<leader>cc", "<cmd>CodeCompanionChat<cr>", desc = "Code Companion Chat" },
-			},
-		},
-		{
 			"MeanderingProgrammer/render-markdown.nvim",
 			ft = { "markdown", "codecompanion" },
 		},
