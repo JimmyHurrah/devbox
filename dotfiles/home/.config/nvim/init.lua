@@ -112,29 +112,6 @@ require("lazy").setup({
 			},
 		},
 		{
-			"nvim-treesitter/nvim-treesitter",
-			build = ":TSUpdate",
-			main = "nvim-treesitter.configs",
-			opts = {
-				auto_install = true,
-				ensure_installed = {
-					"comment",
-					"css",
-					"go",
-					"html",
-					"json",
-					"lua",
-					"markdown",
-					"markdown_inline",
-					"toml",
-					"yaml",
-				},
-				highlight = {
-					enable = true,
-				},
-			},
-		},
-		{
 			"ibhagwan/fzf-lua",
 			dependencies = { "echasnovski/mini.icons" },
 			opts = {
@@ -252,8 +229,14 @@ require("lazy").setup({
 				ensure_installed = {
 					"gopls",
 					"lua_ls",
+					"prettier",
+					"html-lsp",
+					"css-lsp",
 					"csharpier",
 					"roslyn",
+					"xmlformatter",
+					"eslint-lsp",
+					"json-lsp",
 				},
 				ui = {
 					border = "rounded",
@@ -295,15 +278,6 @@ require("lazy").setup({
 				end,
 			},
 		},
-	},
-	{
-		"j-hui/fidget.nvim",
-		opts = {
-			text = {
-				spinner = "dots",
-				done = "✔",
-			},
-		},
 		-- Dotnet
 		{
 			"seblyng/roslyn.nvim",
@@ -321,3 +295,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		require("conform").format({ bufnr = args.buf })
 	end,
 })
+
