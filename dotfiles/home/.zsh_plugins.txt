@@ -1,0 +1,9 @@
+# Zsh plugins managed by antidote
+
+# Core plugins
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+
+# Fast syntax highlighting (deferred loading - faster startup)
+zdharma-continuum/fast-syntax-highlighting kind:defer

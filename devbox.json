@@ -20,14 +20,15 @@
     "go@latest",
     "nodejs@latest",
     "eza@latest",
-    "delta@latest",
-    "claude-code@latest"
+    "antidote@latest",
   ],
   "env": {
     "DEVBOX_COREPACK_ENABLED": "true",
   },
   "shell": {
-    "init_hook": null,
+    "init_hook": [
+      "autoload -U compinit && compinit",
+    ],
     "scripts": {
       "sync": [
         "stow --verbose --dir=./dotfiles --target=$HOME --restow home",

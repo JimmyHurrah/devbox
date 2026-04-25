@@ -24,34 +24,10 @@ export KEYTIMEOUT=1
 # Disable bell sounds
 setopt NO_BEEP
 
-# Fish-like features - install minimal plugins
-# Download plugins if they don't exist
-if [[ ! -d ~/.zsh-plugins ]]; then
-    mkdir -p ~/.zsh-plugins
-fi
-
-if [[ ! -d ~/.zsh-plugins/zsh-autosuggestions ]]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh-plugins/zsh-autosuggestions
-fi
-
-if [[ ! -d ~/.zsh-plugins/zsh-syntax-highlighting ]]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh-plugins/zsh-syntax-highlighting
-fi
-
-if [[ ! -d ~/.zsh-plugins/zsh-history-substring-search ]]; then
-    git clone https://github.com/zsh-users/zsh-history-substring-search ~/.zsh-plugins/zsh-history-substring-search
-fi
-
-# Load plugins
-source ~/.zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh-plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/.zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # Must be last
-
-# Configure history substring search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+# Load antidote and plugins
+export ANTIDOTE_DIR="$DEVBOX_PACKAGES_DIR/share/antidote"
+source "$ANTIDOTE_DIR/antidote.zsh"
+antidote load
 
 # Modern CLI tools (fish-like aliases)
 alias cat="bat -n"
@@ -88,4 +64,8 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='find . -type d -not -path "*/\.git/*" 2>/dev/null'
 
+export PATH="$HOME/.npm-global/bin:$PATH"
+
 eval "$(devbox global shellenv)"
+eval "$(zoxide init zsh --cmd cd)"
+
