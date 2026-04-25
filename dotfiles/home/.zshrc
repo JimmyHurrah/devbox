@@ -21,6 +21,10 @@ setopt APPEND_HISTORY
 bindkey -v
 export KEYTIMEOUT=1
 
+# Fish-like history search (prefix matching)
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
+
 # Disable bell sounds
 setopt NO_BEEP
 
