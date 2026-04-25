@@ -131,23 +131,7 @@ require("lazy").setup({
 				{ "<leader>ft", "<cmd>FzfLua tabs<cr>" },
 			},
 		},
-		{
-			"kdheepak/lazygit.nvim",
-			lazy = true,
-			cmd = {
-				"LazyGit",
-				"LazyGitConfig",
-				"LazyGitCurrentFile",
-				"LazyGitFilter",
-				"LazyGitFilterCurrentFile",
-			},
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-			},
-			keys = {
-				{ "<leader>gt", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-			},
-		},
+		
 		{
 			"github/copilot.vim",
 			lazy = false,
@@ -196,8 +180,13 @@ require("lazy").setup({
 						},
 					},
 				})
+
+				vim.lsp.config("roslyn", {
+					filetypes = { "cs", "razor" },
+				})
 				vim.lsp.enable("gopls")
 				vim.lsp.enable("lua_ls")
+				vim.lsp.enable("roslyn")
 			end,
 		},
 		{
@@ -233,7 +222,6 @@ require("lazy").setup({
 					"html-lsp",
 					"css-lsp",
 					"csharpier",
-					"roslyn",
 					"xmlformatter",
 					"eslint-lsp",
 					"json-lsp",
@@ -278,12 +266,7 @@ require("lazy").setup({
 				end,
 			},
 		},
-		-- Dotnet
-		{
-			"seblyng/roslyn.nvim",
-			ft = { "cs", "razor" },
-			opts = {},
-		},
+		-- Dotnet / Roslyn (handled by nvim-lspconfig)
 	},
 	checker = { enabled = true },
 })
