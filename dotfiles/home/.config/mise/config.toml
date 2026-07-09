@@ -1,0 +1,4 @@
+[tools]
+node = "latest"
+"npm:hunkdiff" = "latest"
+"npm:oh-my-openagent" = "latest"

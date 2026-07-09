@@ -45,6 +45,10 @@ alias gs="git status"
 alias gl="git log --oneline --graph"
 
 # Initialize tools
+if command -v mise &> /dev/null; then
+    eval "$(mise activate zsh)"
+fi
+
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh --cmd cd)"
 fi

@@ -18,9 +18,10 @@
     "fzf@latest",
     "lazygit@latest",
     "go@latest",
-    "nodejs@latest",
     "eza@latest",
     "antidote@latest",
+    "mise@latest",
+    "herdr@latest",
   ],
   "env": {
     "DEVBOX_COREPACK_ENABLED": "true",
