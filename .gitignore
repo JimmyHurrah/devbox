@@ -2,3 +2,4 @@
 .devbox/
 dotfiles/home/.config/nvim/plugin
 devbox.lock
+.omo/
