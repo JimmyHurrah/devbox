@@ -1,0 +1,211 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "opencode-go/kimi-k2.7-code",
+      "variant": "max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/kimi-k2.6",
+          "variant": "max"
+        },
+        {
+          "model": "opencode-go/glm-5.2",
+          "variant": "high"
+        },
+        {
+          "model": "opencode-go/glm-5.1",
+          "variant": "high"
+        }
+      ]
+    },
+    "hephaestus": {
+      "model": "openai/gpt-5.5",
+      "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.5-fast",
+          "variant": "medium"
+        }
+      ]
+    },
+    "oracle": {
+      "model": "openai/gpt-5.5",
+      "variant": "high",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.5-fast",
+          "variant": "medium"
+        }
+      ]
+    },
+    "librarian": {
+      "model": "openai/gpt-5.4-mini-fast"
+    },
+    "explore": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.4-mini-fast"
+        }
+      ]
+    },
+    "multimodal-looker": {
+      "model": "openai/gpt-5.4",
+      "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.4-mini-fast"
+        }
+      ]
+    },
+    "prometheus": {
+      "model": "opencode-go/kimi-k2.7-code",
+      "variant": "max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/kimi-k2.6",
+          "variant": "max"
+        },
+        {
+          "model": "opencode-go/glm-5.2",
+          "variant": "high"
+        },
+        {
+          "model": "opencode-go/glm-5.1",
+          "variant": "high"
+        }
+      ]
+    },
+    "metis": {
+      "model": "opencode-go/glm-5.2",
+      "variant": "max",
+      "fallback_models": [
+        {
+          "model": "opencode-go/glm-5.1",
+          "variant": "high"
+        },
+        {
+          "model": "openai/gpt-5.5",
+          "variant": "medium"
+        }
+      ]
+    },
+    "momus": {
+      "model": "openai/gpt-5.5",
+      "variant": "xhigh",
+      "fallback_models": [
+        {
+          "model": "opencode-go/glm-5.2",
+          "variant": "high"
+        }
+      ]
+    },
+    "atlas": {
+      "model": "openai/gpt-5.5-fast",
+      "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.4-mini",
+          "variant": "medium"
+        }
+      ]
+    },
+    "sisyphus-junior": {
+      "model": "openai/gpt-5.5-fast",
+      "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.4-mini",
+          "variant": "medium"
+        }
+      ]
+    },
+    "chat": {
+      "model": "openai/gpt-5.4-mini-fast",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.4-mini"
+        }
+      ]
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "opencode-go/glm-5.2",
+      "variant": "high",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.5",
+          "variant": "medium"
+        }
+      ]
+    },
+    "ultrabrain": {
+      "model": "openai/gpt-5.5",
+      "variant": "xhigh",
+      "fallback_models": [
+        {
+          "model": "opencode-go/kimi-k2.7-code",
+          "variant": "high"
+        }
+      ]
+    },
+    "deep": {
+      "model": "openai/gpt-5.5",
+      "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.5-fast",
+          "variant": "medium"
+        }
+      ]
+    },
+    "artistry": {
+      "model": "opencode-go/glm-5.2",
+      "variant": "high",
+      "fallback_models": [
+        {
+          "model": "opencode-go/kimi-k2.7-code",
+          "variant": "medium"
+        }
+      ]
+    },
+    "quick": {
+      "model": "openai/gpt-5.4-mini",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.4-mini-fast"
+        }
+      ]
+    },
+    "unspecified-low": {
+      "model": "openai/gpt-5.4-mini",
+      "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.4-mini-fast"
+        }
+      ]
+    },
+    "unspecified-high": {
+      "model": "openai/gpt-5.5-fast",
+      "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.4-mini",
+          "variant": "medium"
+        }
+      ]
+    },
+    "writing": {
+      "model": "openai/gpt-5.4-mini",
+      "variant": "medium",
+      "fallback_models": [
+        {
+          "model": "openai/gpt-5.4-mini-fast"
+        }
+      ]
+    }
+  }
+}

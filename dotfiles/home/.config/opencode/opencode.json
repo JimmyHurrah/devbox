@@ -1,0 +1,33 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": [
+    "openai",
+    "opencode-go"
+  ],
+  "provider": {
+    "opencode-go": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenCode Go",
+      "options": {
+        "baseURL": "https://opencode.ai/zen/go/v1"
+      },
+      "models": {
+        "kimi-k2.7-code": {
+          "name": "Kimi K2.7 Code"
+        },
+        "kimi-k2.6": {
+          "name": "Kimi K2.6"
+        },
+        "glm-5.2": {
+          "name": "GLM-5.2"
+        },
+        "glm-5.1": {
+          "name": "GLM-5.1"
+        }
+      }
+    }
+  },
+  "plugin": [
+    "oh-my-openagent@latest"
+  ]
+}
